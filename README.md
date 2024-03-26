@@ -17,11 +17,11 @@ Requirements
 •	sudo pip3 install openpyxl
 •	sudo pip3 install requests
 •	sudo pip3 install xlrd==1.2.0
-6.	cd openmrs-openempi-utilities-automation
+6.	cd openmrs-openshr-utils
 7.	send 4 shell scripts to /usr/local/bin: sudo cp send_shr_missing_obs.sh get_shr_obs_file.sh hts_rapid_export_daily.sh hts_rapid_export_weekly.sh /usr/local/bin/
 8.	sudo chown openmrs:openmrs /usr/local/bin/*
 9.	sudo chmod +x /usr/local/bin/*
-10.	sudo chown –R openmrs:openmrs  ~/ openmrs-openempi-utilities-automation
+10.	sudo chown –R openmrs:openmrs  ~/ openmrs-openmrs-openshr-utils
 11.	In Crontab add this lines:
 •	*/1 * * * * python3 /home/openmrs/openmrs-openshr-utils/main_shr_missing_obs.py >> /var/log/missing_shr_obs.log 2>&1
 •	*/2 * * * * python3 /home/openmrs/openmrs-openshr-utils/main_shr_missing_patients.py >> /var/log/missing_shr_patients.log 2>&1
