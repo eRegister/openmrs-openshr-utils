@@ -2,10 +2,10 @@
 utils for monitoring HTS data streaming between eRegister and SHR
 
 Requirements
+  Clone/Copy openmrs-openshr-utils repo/folder to /home/openmrs
 1.	Open files “main_shr_missing_obs.py” & “main_shr_missing_patients.py” and change variable facility_heina value to facility’s heina and also enter facility name to facility_name variable for both files.
 2.	Open “send_shr_missing_obs.sh” file and edit one drive facility name to match the one on onedrive
 3.	Make sure server host is using python3 version e.g. version 3.6 => python3 --version
-4.	Clone/Copy openmrs-openshr-utils repo/folder to /home/openmrs
 5.	Installing python3 dependencies
 •	If python version >= 3.6
 	If you do not have pip3 installed run => sudo apt install python3-pip
