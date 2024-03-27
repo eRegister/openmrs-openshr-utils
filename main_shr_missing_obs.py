@@ -52,7 +52,7 @@ if subprocess.call(['sh', '/usr/local/bin/get_shr_obs_file.sh'])==0:
         yesterday = today - timedelta(days=1)
         print(datetime.today().strftime('%d-%m-%Y'))
         # hie_data= "SHR_data/SHR_HTS_"+yesterday.strftime('%d-%m-%Y')+".xlsx"
-        hie_data= "/home/openmrs/openmrs-openempi-utilities-automation/SHR_data/SHR_HTS_"+datetime.today().strftime('%d-%m-%Y')+".xlsx"
+        hie_data= "/home/openmrs/openmrs-openshr-utils/SHR_data/SHR_HTS_"+datetime.today().strftime('%d-%m-%Y')+".xlsx"
         print("SHR file :"+hie_data)
         if os.path.exists(hie_data):
           print("Comparing SHR obs with eRegister obs...")
