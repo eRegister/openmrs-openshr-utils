@@ -17,10 +17,10 @@ def demographics(facility_name,sql_exported_file,heina_id):
     #########################################
     
     # create Workbook object
+    read_file = pd.read_csv (sql_exported_file,header=None)
+    read_file.to_csv (sql_exported_file, header=['Identifier', 'givenname', 'familyname', 'address1', 'address2', 'city', 'dateOfBirth', 'phoneNumber', 'identifier', 'gender', 'mothersMaidenName', 'familyname2', 'motherName', 'maritalstatusCode'], index = False)
     
     read_file = pd.read_csv (sql_exported_file)
-    read_file.reset_index()
-    read_file.columns = ['Publisher', 'Frequency']
     read_file.to_excel ('/home/openmrs/openmrs-openshr-utils/converted.xlsx', index = False, header=True)
     
     wb2 = Workbook()
@@ -55,7 +55,7 @@ def demographics(facility_name,sql_exported_file,heina_id):
     column_count = sheet.max_column
     row_count = sheet.max_row
     column_count = sheet.max_column
-    (sheet2.cell(row=1,column=1)).value = "identifier"
+    (sheet2.cell(row=1,column=1)).value = "Identifier"
     (sheet2.cell(row=1,column=2)).value = "givenname"
     (sheet2.cell(row=1,column=3)).value = "familyname"
     (sheet2.cell(row=1,column=4)).value = "address1"
