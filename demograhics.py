@@ -19,11 +19,13 @@ def demographics(facility_name,sql_exported_file,heina_id):
     # create Workbook object
     
     read_file = pd.read_csv (sql_exported_file)
-    read_file.to_excel ('converted.xlsx', index = None, header=True)
+    read_file.reset_index()
+    read_file.columns = ['Publisher', 'Frequency']
+    read_file.to_excel ('/home/openmrs/openmrs-openshr-utils/converted.xlsx', index = False, header=True)
     
     wb2 = Workbook()
     # set file path
-    filepath2=facility_name+"_HTSNew.xlsx"
+    filepath2="/home/openmrs/openmrs-openshr-utils/"+facility_name+"_HTSNew.xlsx"
     # if not os.path.exists("./data/"):
     #     os.mkdir("data")
     if os.path.exists(filepath2):
@@ -42,7 +44,7 @@ def demographics(facility_name,sql_exported_file,heina_id):
     print("heina: "+heina)
     
     # set file path
-    filepath = "converted.xlsx"
+    filepath = "/home/openmrs/openmrs-openshr-utils/converted.xlsx"
     # load demo.xlsx 
     wb = load_workbook(filename = filepath)
     

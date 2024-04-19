@@ -26,6 +26,6 @@ def send_missing_clients(missing_csv_filename,facility_name):
     for patient in failed_patients:
         print(patient.givenName+" "+patient.familyName+"\n")
 
-    write_data_to_csv(facility_name+"_sent_patients.csv", sent_patients)
-    write_data_to_csv(facility_name+"_failed_patients.csv", failed_patients)
+    write_data_to_csv("/home/openmrs/openmrs-openshr-utils/"+facility_name+"_sent_patients.csv", sent_patients)
+    write_data_to_csv("/home/openmrs/openmrs-openshr-utils/"+facility_name+"_failed_patients.csv", failed_patients)
 

@@ -15,24 +15,24 @@ from datetime import datetime, timedelta
 facility_name= "Khabo_HC"
 facility_heina= "2.25.71280592878078638113873461180761116380"
 
-sql_data_file="facility_RAPID_HTS_weekly.csv"
+sql_data_file="/home/openmrs/openmrs-openshr-utils/facility_RAPID_HTS_weekly.csv"
 
 if os.path.exists(sql_data_file):
   os.remove(sql_data_file)
   
-if not os.path.exists("./SHR_data"):
-  os.mkdir("SHR_data")
+if not os.path.exists("/home/openmrs/openmrs-openshr-utils/SHR_data"):
+  os.mkdir("/home/openmrs/openmrs-openshr-utils/SHR_data")
 
 if subprocess.call(['sh', '/usr/local/bin/get_shr_obs_file.sh'])==0:
   if subprocess.call(['sh', '/usr/local/bin/hts_rapid_export_weekly.sh'])==0:
     if os.path.exists(sql_data_file) and os.stat(sql_data_file).st_size!=0:
       demographics_file_name=demograhics.demographics(facility_name,sql_data_file,facility_heina)
       if demographics_file_name:
-        if not os.path.exists("./data/"):
-          os.mkdir("data")
+        if not os.path.exists("/home/openmrs/openmrs-openshr-utils/data/"):
+          os.mkdir("/home/openmrs/openmrs-openshr-utils/data")
         # shutil.copy(demographics_file_name, "./data/")
         print("demographics_file done")
-        filename_csv=facility_name+"_HTSNew.csv"
+        filename_csv="/home/openmrs/openmrs-openshr-utils/"+facility_name+"_HTSNew.csv"
         # print(convert_demographics_excel_to_csv.convert_demographics_excel_to_csv(demographics_file_name,filename_csv))
         convert_demographics_excel_to_csv.convert_demographics_excel_to_csv(demographics_file_name,filename_csv)
         print("demographics conversion done")
