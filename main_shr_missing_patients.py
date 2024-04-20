@@ -11,7 +11,7 @@ import subprocess
 facility_name= "Khabo_HC"
 facility_heina= "2.25.71280592878078638113873461180761116380"
 
-sql_data_file="facility_RAPID_HTS.csv"
+sql_data_file="/home/openmrs/openmrs-openshr-utils/facility_RAPID_HTS.csv"
 
 if os.path.exists(sql_data_file):
   os.remove(sql_data_file)
@@ -24,11 +24,11 @@ if subprocess.call(['sh', '/usr/local/bin/hts_rapid_export_daily.sh'])==0:
     if os.stat(sql_data_file).st_size!=0:
       demographics_file_name=demograhics.demographics(facility_name,sql_data_file,facility_heina)
       if demographics_file_name:
-        if not os.path.exists("./data/"):
-          os.mkdir("data")
+        if not os.path.exists("/home/openmrs/openmrs-openshr-utils/data/"):
+          os.mkdir("/home/openmrs/openmrs-openshr-utils/data")
         # shutil.copy(demographics_file_name, "./data/")
         print("demographics_file done")
-        filename_csv=facility_name+"_HTSNew.csv"
+        filename_csv="/home/openmrs/openmrs-openshr-utils/"+facility_name+"_HTSNew.csv"
         # print(convert_demographics_excel_to_csv.convert_demographics_excel_to_csv(demographics_file_name,filename_csv))
         convert_demographics_excel_to_csv.convert_demographics_excel_to_csv(demographics_file_name,filename_csv)
         print("demographics conversion done")

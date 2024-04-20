@@ -18,7 +18,7 @@ def compare_eregister_vs_hie_data(demographics_file, hie_file,facility_name):
     
     wb2 = Workbook()
     # set file path
-    filepath2="data/"+facility_name+"_found_HTS_observations.xlsx"
+    filepath2="/home/openmrs/openmrs-openshr-utils/data/"+facility_name+"_found_HTS_observations.xlsx"
     # save workbook 
     wb2.save(filepath2)
     wb2 = load_workbook(filepath2)
@@ -30,7 +30,7 @@ def compare_eregister_vs_hie_data(demographics_file, hie_file,facility_name):
     
     wb3 = Workbook()
     # set file path
-    filepath3="data/"+facility_name+"_missing_HTS_observations_"+datetime.today().strftime('%d_%m_%Y')+".xlsx"
+    filepath3="/home/openmrs/openmrs-openshr-utils/data/"+facility_name+"_missing_HTS_observations_"+datetime.today().strftime('%d_%m_%Y')+".xlsx"
     # save workbook 
     wb3.save(filepath3)
     wb3 = load_workbook(filepath3)
