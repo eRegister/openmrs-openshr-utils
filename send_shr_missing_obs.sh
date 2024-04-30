@@ -10,11 +10,17 @@ then
         d2_year=$(date -d 'last Sunday - 2 days' +"%Y")
 
 
-elif [ $(date +%u) -gt 5 ]
+elif [ $(date +%u) -eq 6 ]
 then
-        d2=$(date -d 'this Friday' '+%d_%m_%Y')
-        d2_month=$(date -d 'this Friday' +"%B")
-        d2_year=$(date -d 'this Friday' +"%Y")
+        d2=$(date -d 'yesterday' '+%d_%m_%Y')
+        d2_month=$(date -d 'yesterday' +"%B")
+        d2_year=$(date -d 'yesterday' +"%Y")
+
+elif [ $(date +%u) -eq 7 ]
+then
+        d2=$(date -d 'yesterday - 1 days' '+%d_%m_%Y')
+        d2_month=$(date -d 'yesterday - 1 days' +"%B")
+        d2_year=$(date -d 'yesterday - 1 days' +"%Y")
 
 fi
 

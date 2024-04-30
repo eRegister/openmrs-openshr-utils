@@ -57,13 +57,11 @@ if subprocess.call(['sh', '/usr/local/bin/get_shr_obs_file.sh'])==0:
           print(datetime.today().strftime('%d-%m-%Y'))
           # hie_data= "SHR_data/SHR_HTS_"+yesterday.strftime('%d-%m-%Y')+".xlsx"
           file_date=datetime.today().strftime('%d-%m-%Y')
-          if datetime.today().isoweekday() < 5:
+          
+          if not(datetime.today().isoweekday() == 5):
             # taking the start date as the current date
             start_date = datetime.now()
             file_date=(start_date + relativedelta(weekday=FR(-1))).strftime('%d-%m-%Y')
-          elif datetime.today().isoweekday() > 5:
-            start_date = datetime.now()
-            file_date=(start_date + relativedelta(weekday=FR)).strftime('%d-%m-%Y')
           hie_data= "/home/openmrs/openmrs-openshr-utils/SHR_data/SHR_HTS_"+file_date+".xlsx"
           print("SHR file :"+hie_data)
           if os.path.exists(hie_data):

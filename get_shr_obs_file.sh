@@ -8,9 +8,13 @@ then
         d2=$(date -d 'last Sunday - 2 days' '+%d-%m-%Y')
 
 
-elif [ $(date +%u) -gt 5 ]
+elif [ $(date +%u) -eq 6 ]
 then
-        d2=$(date -d 'this Friday' '+%d-%m-%Y')
+        d2=$(date -d 'yesterday' '+%d_%m_%Y')
+
+elif [ $(date +%u) -eq 7 ]
+then
+        d2=$(date -d 'yesterday - 1 days' '+%d_%m_%Y')
 
 fi
 

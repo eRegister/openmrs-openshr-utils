@@ -34,14 +34,11 @@ def compare_eregister_vs_hie_data(demographics_file, hie_file,facility_name):
     wb3 = Workbook()
     # set file path
 
-    file_date=datetime.today().strftime('%d-%m-%Y')
-    if datetime.today().isoweekday() < 5:
+    file_date=datetime.today().strftime('%d_%m_%Y')
+    if not(datetime.today().isoweekday() == 5):
         # taking the start date as the current date
         start_date = datetime.now()
         file_date=(start_date + relativedelta(weekday=FR(-1))).strftime('%d_%m_%Y')
-    elif datetime.today().isoweekday() > 5:
-        start_date = datetime.now()
-        file_date=(start_date + relativedelta(weekday=FR)).strftime('%d-%m-%Y')
 
     filepath3="/home/openmrs/openmrs-openshr-utils/data/"+facility_name+"_missing_HTS_observations_"+file_date+".xlsx"
     # save workbook 
