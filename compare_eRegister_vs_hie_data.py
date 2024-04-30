@@ -5,6 +5,9 @@ from  openpyxl import Workbook
 from openpyxl import load_workbook
 from datetime import datetime, timedelta
 
+from dateutil.relativedelta import relativedelta
+from dateutil.rrule import *
+
 # Open the spreadsheet 
 def compare_eregister_vs_hie_data(demographics_file, hie_file,facility_name):
     workbook = openpyxl.load_workbook(demographics_file) 
@@ -30,7 +33,17 @@ def compare_eregister_vs_hie_data(demographics_file, hie_file,facility_name):
     
     wb3 = Workbook()
     # set file path
-    filepath3="/home/openmrs/openmrs-openshr-utils/data/"+facility_name+"_missing_HTS_observations_"+datetime.today().strftime('%d_%m_%Y')+".xlsx"
+
+    file_date=datetime.today().strftime('%d-%m-%Y')
+    if datetime.today().isoweekday() < 5:
+        # taking the start date as the current date
+        start_date = datetime.now()
+        file_date=(start_date + relativedelta(weekday=FR(-1))).strftime('%d_%m_%Y')
+    elif datetime.today().isoweekday() > 5:
+        start_date = datetime.now()
+        file_date=(start_date + relativedelta(weekday=FR)).strftime('%d-%m-%Y')
+
+    filepath3="/home/openmrs/openmrs-openshr-utils/data/"+facility_name+"_missing_HTS_observations_"+file_date+".xlsx"
     # save workbook 
     wb3.save(filepath3)
     wb3 = load_workbook(filepath3)
@@ -64,3 +77,4 @@ def compare_eregister_vs_hie_data(demographics_file, hie_file,facility_name):
     print("Saved clients with missing encounters to '"+filepath3+"'")
 
     # Print the list of names 
+

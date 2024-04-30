@@ -1,7 +1,26 @@
 #!/bin/bash
 
-d1=$(date -d "6 days ago" '+%Y-%m-%d')
-d2=$(date -d "tomorrow" "+%Y-%m-%d")
+#last week  friday
+d1=$(date -d 'last Sunday - 8 days' '+%Y-%m-%d')
+d2=$(date -d 'last Sunday - 1 days' '+%Y-%m-%d')
+
+#check if today is friday, saturday or sunday, if not use last week's dates
+if [ $(date +%u) -eq 5 ]
+then
+        d1=$(date -d "6 days ago" '+%Y-%m-%d')
+        d2=$(date -d "tomorrow" "+%Y-%m-%d")
+
+elif [ $(date +%u) -eq 6 ]
+then
+        d1=$(date -d "7 days ago" '+%Y-%m-%d')
+        d2=$(date +%Y-%m-%d)
+
+elif [ $(date +%u) -eq 7 ]
+then
+        d1=$(date -d "8 days ago" '+%Y-%m-%d')
+        d2=$(date -d "yesterday" "+%Y-%m-%d")
+fi
+
 
 a='"'
 docker exec bahmni_docker_emr-service_1 rm /var/lib/mysql-files/facility_RAPID_HTS_weekly.csv

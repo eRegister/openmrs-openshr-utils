@@ -1,3 +1,24 @@
 #!/bin/bash
 d2=$(date +'%d_%m_%Y')
-sudo /usr/bin/rclone copy /home/openmrs/openmrs-openshr-utils/data/"$1_missing_HTS_observations_$d2.xlsx" onedrive:"North eRegister Backups"/"Leribe Backups"/"Khabo HC"/"$(date +"%Y")"/"$(date +"%B")"/"Missing Observations"
+d2_month=$(date +"%B")
+d2_year=$(date +"%Y")
+#check if today is friday, saturday or sunday, if not use last week's dates
+if [ $(date +%u) -lt 5 ]
+then
+        d2=$(date -d 'last Sunday - 2 days' '+%d_%m_%Y')
+        d2_month=$(date -d 'last Sunday - 2 days' +"%B")
+        d2_year=$(date -d 'last Sunday - 2 days' +"%Y")
+
+
+elif [ $(date +%u) -gt 5 ]
+then
+        d2=$(date -d 'this Friday' '+%d_%m_%Y')
+        d2_month=$(date -d 'this Friday' +"%B")
+        d2_year=$(date -d 'this Friday' +"%Y")
+
+fi
+
+
+sudo /usr/bin/rclone copy /home/openmrs/openmrs-openshr-utils/data/"$1_missing_HTS_observations_$d2.xlsx" onedrive:"North eRegister Backups"/"Leribe Backups"/"Motebang HOSP"/"$d2_year"/"$d2_month"/"Missing Observations"
+
+echo "Date = $d2, Year = $d2_year, Month = $d2_month"
