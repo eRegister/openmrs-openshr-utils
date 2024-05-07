@@ -8,8 +8,8 @@ import send_missing_clients
 import subprocess
 
 #edit facility_name and facility_heina to that of current facility
-facility_name= "Khabo_HC"
-facility_heina= "2.25.71280592878078638113873461180761116380"
+facility_name= "Motebang_HOSP"
+facility_heina= "2.25.71280592878078638113873461180761116361"
 
 sql_data_file="/home/openmrs/openmrs-openshr-utils/facility_RAPID_HTS.csv"
 
