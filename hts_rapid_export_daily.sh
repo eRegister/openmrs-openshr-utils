@@ -8,7 +8,7 @@ docker exec bahmni_docker_emr-service_1 rm /var/lib/mysql-files/facility_RAPID_H
 
 docker exec -i bahmni_docker_emr-service_1 /usr/bin/mysql -u root --password=P@ssw0rd openmrs -e "select distinct patient_identifier.identifier, person_name.given_name, 
 person_name.family_name,pa.city_village as address1,pa.address2 as address2,pa.state_province as city,person.birthdate as dateOfBirth,pc.value as phoneNumber,
-ni.identifier as nationalID,person.gender AS gender,pn.middle_name as mothersMaidenName,ts.value as motherName,msc.value as maritalStatusCode from obs o 
+ni.identifier as nationalID,person.gender AS gender,pn.middle_name as mothersMaidenName,person_name.family_name2,ts.value as motherName,msc.value as maritalStatusCode from obs o 
 INNER JOIN patient ON o.person_id = patient.patient_id AND o.concept_id = 2165 AND CAST(o.obs_datetime AS DATE) >= CAST('$d1' AS DATE) AND 
 CAST(o.obs_datetime AS DATE) <= CAST('$d2' AS DATE) AND patient.voided = 0 AND o.voided = 0 INNER JOIN person_name pn on o.person_id = pn.person_id and pn.voided=0 
 INNER JOIN person ON person.person_id = patient.patient_id AND person.voided = 0 left JOIN person_address pa on o.person_id = pa.person_id left JOIN 

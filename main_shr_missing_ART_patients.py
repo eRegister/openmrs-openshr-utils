@@ -2,10 +2,10 @@
 import sys
 sys.path.append('/home/openmrs')
 import openshr_automation_global_variables
-sys.path.append(openshr_automation_global_variables.get_server_python_version_dependency_path)
+sys.path.append(openshr_automation_global_variables.get_server_python_version_dependency_path())
 import os
 import shutil
-import demograhics_art
+import demographics_art
 import find_missing_ART_clients
 import convert_demographics_excel_to_csv
 import send_missing_clients
@@ -26,7 +26,7 @@ if subprocess.call(['sh', '/usr/local/bin/ART_export_daily.sh'])==0:
 
   if os.path.exists(sql_data_file):
     if os.stat(sql_data_file).st_size!=0:
-      demographics_file_name=demograhics_art.demographics(facility_name,sql_data_file,facility_heina)
+      demographics_file_name=demographics_art.demographics(facility_name,sql_data_file,facility_heina)
       if demographics_file_name:
         if not os.path.exists("/home/openmrs/openmrs-openshr-utils/data/"):
           os.mkdir("/home/openmrs/openmrs-openshr-utils/data")

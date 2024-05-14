@@ -2,7 +2,7 @@
 import sys
 sys.path.append('/home/openmrs')
 import openshr_automation_global_variables
-sys.path.append(openshr_automation_global_variables.get_server_python_version_dependency_path)
+sys.path.append(openshr_automation_global_variables.get_server_python_version_dependency_path())
 import os
 import shutil
 import demograhics
@@ -70,7 +70,7 @@ if subprocess.call(['sh', '/usr/local/bin/get_shr_obs_file.sh'])==0:
             print("Comparing SHR obs with eRegister obs...")
             compare_eRegister_vs_hie_data.compare_eregister_vs_hie_data(demographics_file_name, hie_data,facility_name)
             print("Comparing SHR obs with eRegister obs done")
-            if subprocess.call(['sh', '/usr/local/bin/send_shr_missing_obs.sh',facility_name,openshr_automation_global_variables.get_facility_onedrive_folder])==0:
+            if subprocess.call(['sh', '/usr/local/bin/send_shr_missing_obs.sh',facility_name,openshr_automation_global_variables.get_facility_onedrive_folder()])==0:
               print("missing observation file has been uploaded to onedrive")
             else:
               print("Error...missing observation file has has failed to be uploaded to onedrive")
