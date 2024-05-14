@@ -1,6 +1,8 @@
 #import mysql.connector
 import sys
-sys.path.append('/home/openmrs/.local/lib/python3.6/site-packages')
+sys.path.append('/home/openmrs')
+import openshr_automation_global_variables
+sys.path.append(openshr_automation_global_variables.get_server_python_version_dependency_path)
 import os
 import shutil
 import demograhics
@@ -15,8 +17,8 @@ from dateutil.relativedelta import relativedelta
 from dateutil.rrule import *
 
 #edit facility_name and facility_heina to that of current facility
-facility_name= "Motebang_HOSP"
-facility_heina= "2.25.71280592878078638113873461180761116361"
+facility_name= openshr_automation_global_variables.get_facility_name()
+facility_heina= openshr_automation_global_variables.get_facility_heina()
 
 sql_data_file="/home/openmrs/openmrs-openshr-utils/facility_RAPID_HTS_weekly.csv"
 
@@ -68,7 +70,7 @@ if subprocess.call(['sh', '/usr/local/bin/get_shr_obs_file.sh'])==0:
             print("Comparing SHR obs with eRegister obs...")
             compare_eRegister_vs_hie_data.compare_eregister_vs_hie_data(demographics_file_name, hie_data,facility_name)
             print("Comparing SHR obs with eRegister obs done")
-            if subprocess.call(['sh', '/usr/local/bin/send_shr_missing_obs.sh',facility_name])==0:
+            if subprocess.call(['sh', '/usr/local/bin/send_shr_missing_obs.sh',facility_name,openshr_automation_global_variables.get_facility_onedrive_folder])==0:
               print("missing observation file has been uploaded to onedrive")
             else:
               print("Error...missing observation file has has failed to be uploaded to onedrive")
