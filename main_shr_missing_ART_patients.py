@@ -20,18 +20,20 @@ sql_data_file="/home/openmrs/openmrs-openshr-utils/facility_ART_daily.csv"
 if os.path.exists(sql_data_file):
   os.remove(sql_data_file)
   
-
+print("Quering DB for patients demographics data...Please Wait...")
 if subprocess.call(['sh', '/usr/local/bin/ART_export_daily.sh'])==0:
   
 
   if os.path.exists(sql_data_file):
     if os.stat(sql_data_file).st_size!=0:
+      print("Processing and Creating Demographics file...")
       demographics_file_name=demographics_art.demographics(facility_name,sql_data_file,facility_heina)
+      print("Demographics file created.")
       if demographics_file_name:
         if not os.path.exists("/home/openmrs/openmrs-openshr-utils/data/"):
           os.mkdir("/home/openmrs/openmrs-openshr-utils/data")
         # shutil.copy(demographics_file_name, "./data/")
-        print("demographics_file done")
+        print("converting demographics file to csv")
         filename_csv="/home/openmrs/openmrs-openshr-utils/"+facility_name+"_ARTNew.csv"
         # print(convert_demographics_excel_to_csv.convert_demographics_excel_to_csv(demographics_file_name,filename_csv))
         convert_demographics_excel_to_csv.convert_demographics_excel_to_csv(demographics_file_name,filename_csv)

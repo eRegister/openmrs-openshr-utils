@@ -27,17 +27,21 @@ if os.path.exists(sql_data_file):
   
 if not os.path.exists("/home/openmrs/openmrs-openshr-utils/SHR_data"):
   os.mkdir("/home/openmrs/openmrs-openshr-utils/SHR_data")
-
+print("Downloading SHR file please wait...")
 if subprocess.call(['sh', '/usr/local/bin/get_shr_obs_file.sh'])==0:
+  print("Download Complete.")
+  print("Quering DB for patients demographics data...Please Wait...")
   if subprocess.call(['sh', '/usr/local/bin/hts_rapid_export_weekly.sh'])==0:
     if os.path.exists(sql_data_file):
       if os.stat(sql_data_file).st_size!=0:
+        print("Processing and Creating Demographics file...")
         demographics_file_name=demograhics.demographics(facility_name,sql_data_file,facility_heina)
+        print("Demographics file created.")
         if demographics_file_name:
           if not os.path.exists("/home/openmrs/openmrs-openshr-utils/data/"):
             os.mkdir("/home/openmrs/openmrs-openshr-utils/data")
           # shutil.copy(demographics_file_name, "./data/")
-          print("demographics_file done")
+          print("converting demographics file to csv")
           filename_csv="/home/openmrs/openmrs-openshr-utils/"+facility_name+"_HTSNew.csv"
           # print(convert_demographics_excel_to_csv.convert_demographics_excel_to_csv(demographics_file_name,filename_csv))
           convert_demographics_excel_to_csv.convert_demographics_excel_to_csv(demographics_file_name,filename_csv)
