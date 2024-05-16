@@ -23,11 +23,11 @@ def demographics(facility_name,sql_exported_file,heina_id):
     read_file.to_csv (sql_exported_file, header=['Identifier', 'givenname', 'familyname', 'address1', 'address2', 'city', 'dateOfBirth', 'phoneNumber', 'identifier', 'gender', 'mothersMaidenName', 'familyname2', 'motherName', 'maritalstatusCode'], index = False)
     
     read_file = pd.read_csv (sql_exported_file)
-    read_file.to_excel ('/home/openmrs/openmrs-openshr-utils/converted.xlsx', index = False, header=True)
+    read_file.to_excel ('/home/openmrs/openmrs-openshr-utils/converted_ART.xlsx', index = False, header=True)
     
     wb2 = Workbook()
     # set file path
-    filepath2="/home/openmrs/openmrs-openshr-utils/"+facility_name+"_HTSNew.xlsx"
+    filepath2="/home/openmrs/openmrs-openshr-utils/"+facility_name+"_ARTNew.xlsx"
     # if not os.path.exists("./data/"):
     #     os.mkdir("data")
     if os.path.exists(filepath2):
@@ -46,7 +46,7 @@ def demographics(facility_name,sql_exported_file,heina_id):
     print("heina: "+heina)
     
     # set file path
-    filepath = "/home/openmrs/openmrs-openshr-utils/converted.xlsx"
+    filepath = "/home/openmrs/openmrs-openshr-utils/converted_ART.xlsx"
     # load demo.xlsx 
     wb = load_workbook(filename = filepath)
     
