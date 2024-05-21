@@ -1,2 +1,14 @@
 # ignore ALL .csv files
 *.csv
+
+# ignore ALL .csv files
+*.xlsx
+
+# ignore ALL files in ANY directory named global_variables
+global_variables/
+
+# ignore ALL files in ANY directory named data
+data/
+
+# ignore ALL files in ANY directory named SHR_data
+SHR_data/

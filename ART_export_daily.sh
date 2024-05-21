@@ -20,3 +20,5 @@ patient_identifier.patient_id = person.person_id AND patient_identifier.identifi
 INTO OUTFILE '/var/lib/mysql-files/facility_ART_daily.csv' FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '$a' LINES TERMINATED BY '\n'"
 
 docker cp bahmni_docker_emr-service_1:/var/lib/mysql-files/facility_ART_daily.csv /home/openmrs/openmrs-openshr-utils
+
+echo "$d2"

@@ -25,6 +25,6 @@ then
 fi
 
 
-sudo /usr/bin/rclone copy /home/openmrs/openmrs-openshr-utils/data/"$1_missing_HTS_observations_$d2.xlsx" onedrive:"North eRegister Backups"/"Leribe Backups"/"$2"/"$d2_year"/"$d2_month"/"Missing Observations"
+sudo /usr/bin/rclone copy /home/openmrs/openmrs-openshr-utils/data/"$1_missing_HTS_observations_$d2.xlsx" onedrive:"$2"/"$d2_year"/"$d2_month"/"Missing Observations"
 
 echo "Date = $d2, Year = $d2_year, Month = $d2_month"
