@@ -1,0 +1,18 @@
+[Unit]
+Description=openMRS and openSHR utils for continuous deployment
+After=docker.service
+
+
+[Service]
+WorkingDirectory=/home/openmrs/openmrs-openshr-utils/
+ExecStart=/home/openmrs/openmrs-openshr-utils/gitpull_openshr_utils.sh
+StandardOutput=file:/var/log/gitpull_openshr_utils.log
+StandardOutput=file:/var/log/gitpull_openshr_utils.log
+
+User=openmrs
+RestartSec=86400
+Restart=always
+
+
+[Install]
+WantedBy=default.target
