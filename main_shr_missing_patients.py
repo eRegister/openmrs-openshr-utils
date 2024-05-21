@@ -1,6 +1,6 @@
 #import mysql.connector
 import sys
-sys.path.append('/home/openmrs')
+sys.path.append('/home/openmrs/global_variables/')
 import openshr_automation_global_variables
 sys.path.append(openshr_automation_global_variables.get_server_python_version_dependency_path())
 import os
