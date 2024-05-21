@@ -21,3 +21,5 @@ INTO OUTFILE '/var/lib/mysql-files/facility_RAPID_HTS.csv' FIELDS TERMINATED BY 
 
 docker cp bahmni_docker_emr-service_1:/var/lib/mysql-files/facility_RAPID_HTS.csv /home/openmrs/openmrs-openshr-utils
 
+echo "$d2"
+
