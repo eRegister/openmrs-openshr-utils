@@ -17,22 +17,25 @@ def demographics(facility_name,sql_exported_file,heina_id):
     #########################################
     ### create a new empty work book
     #########################################
-    
+    if os.path.exists('/home/openmrs/openmrs-openshr-utils/converted.xlsx'):
+        os.remove('/home/openmrs/openmrs-openshr-utils/converted.xlsx')
     # create Workbook object
-    read_file = pd.read_csv (sql_exported_file,header=None)
-    read_file.to_csv (sql_exported_file, header=['Identifier', 'givenname', 'familyname', 'address1', 'address2', 'city', 'dateOfBirth', 'phoneNumber', 'identifier', 'gender', 'mothersMaidenName', 'familyname2', 'motherName', 'maritalstatusCode'], index = False)
+    try:
+        read_file = pd.read_csv (sql_exported_file,header=None)
+        read_file.to_csv (sql_exported_file, header=['Identifier', 'givenname', 'familyname', 'address1', 'address2', 'city', 'dateOfBirth', 'phoneNumber', 'identifier', 'gender', 'mothersMaidenName', 'familyname2', 'motherName', 'maritalstatusCode'], index = False)
     
-    read_file = pd.read_csv (sql_exported_file)
-    read_file.to_excel ('/home/openmrs/openmrs-openshr-utils/converted.xlsx', index = False, header=True)
-    
+        read_file = pd.read_csv (sql_exported_file)
+        read_file.to_excel ('/home/openmrs/openmrs-openshr-utils/converted.xlsx', index = False, header=True)
+    except:
+        print("No patients seen/consulted for this period")
     wb2 = Workbook()
     # set file path
-    filepath2="/home/openmrs/openmrs-openshr-utils/"+facility_name+"_HTSNew.xlsx"
+    filepath2 = path2="/home/openmrs/openmrs-openshr-utils/"+facility_name+"_HTSNew.xlsx"
     # if not os.path.exists("./data/"):
     #     os.mkdir("data")
     if os.path.exists(filepath2):
         os.remove(filepath2)
-        
+    
     # save workbook 
     wb2.save(filepath2)
     
@@ -47,7 +50,10 @@ def demographics(facility_name,sql_exported_file,heina_id):
     
     # set file path
     filepath = "/home/openmrs/openmrs-openshr-utils/converted.xlsx"
-    # load demo.xlsx 
+    # load demo.xlsx
+    if not os.path.exists(filepath):
+        wb3 = Workbook()
+        wb3.save(filepath)
     wb = load_workbook(filename = filepath)
     
     # select demo.xlsx

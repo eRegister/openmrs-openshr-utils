@@ -22,6 +22,8 @@ def demographics(facility_name,sql_exported_file,heina_id):
     read_file = pd.read_csv (sql_exported_file,header=None)
     read_file.to_csv (sql_exported_file, header=['Identifier', 'givenname', 'familyname', 'address1', 'address2', 'city', 'dateOfBirth', 'phoneNumber', 'identifier', 'gender', 'mothersMaidenName', 'familyname2', 'motherName', 'maritalstatusCode'], index = False)
     
+    if os.path.exists('/home/openmrs/openmrs-openshr-utils/converted_ART.xlsx'):
+        os.remove('/home/openmrs/openmrs-openshr-utils/converted_ART.xlsx')
     read_file = pd.read_csv (sql_exported_file)
     read_file.to_excel ('/home/openmrs/openmrs-openshr-utils/converted_ART.xlsx', index = False, header=True)
     
