@@ -1,7 +1,10 @@
 #importing pandas as pd 
 import pandas as pd 
+import os
   
 def convert_demographics_excel_to_csv(filename_xlsx,filename_csv):
+    if os.path.exists(filename_csv):
+        os.remove(filename_csv)
     
     # Read and store content 
     # of an excel file  

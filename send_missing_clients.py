@@ -1,6 +1,7 @@
 from openempi_session import Openempi_session
 from helper import get_patients_from_csv
 from helper import write_data_to_csv
+import os
 
 def send_missing_clients(missing_csv_filename,facility_name):
     filename = missing_csv_filename
@@ -26,6 +27,10 @@ def send_missing_clients(missing_csv_filename,facility_name):
     for patient in failed_patients:
         print(patient.givenName+" "+patient.familyName+"\n")
 
+    if os.path.exists("/home/openmrs/openmrs-openshr-utils/"+facility_name+"_sent_patients.csv"):
+        os.remove("/home/openmrs/openmrs-openshr-utils/"+facility_name+"_sent_patients.csv")
+    if os.path.exists("/home/openmrs/openmrs-openshr-utils/"+facility_name+"_failed_patients.csv"):
+        os.remove("/home/openmrs/openmrs-openshr-utils/"+facility_name+"_failed_patients.csv")
     write_data_to_csv("/home/openmrs/openmrs-openshr-utils/"+facility_name+"_sent_patients.csv", sent_patients)
     write_data_to_csv("/home/openmrs/openmrs-openshr-utils/"+facility_name+"_failed_patients.csv", failed_patients)
 

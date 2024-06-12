@@ -7,6 +7,7 @@ from datetime import datetime, timedelta
 
 from dateutil.relativedelta import relativedelta
 from dateutil.rrule import *
+import os
 
 # Open the spreadsheet 
 def compare_eregister_vs_hie_data(demographics_file, hie_file,facility_name):
@@ -18,10 +19,14 @@ def compare_eregister_vs_hie_data(demographics_file, hie_file,facility_name):
     sheet2 = workbook2.worksheets[0] 
 
     # Create a list to store the values 
-    
+       
     wb2 = Workbook()
     # set file path
     filepath2="/home/openmrs/openmrs-openshr-utils/data/"+facility_name+"_found_HTS_observations.xlsx"
+    
+    if os.path.exists(filepath2):
+        os.remove(filepath2)
+    
     # save workbook 
     wb2.save(filepath2)
     wb2 = load_workbook(filepath2)
@@ -41,6 +46,9 @@ def compare_eregister_vs_hie_data(demographics_file, hie_file,facility_name):
         file_date=(start_date + relativedelta(weekday=FR(-1))).strftime('%d_%m_%Y')
 
     filepath3="/home/openmrs/openmrs-openshr-utils/data/"+facility_name+"_missing_HTS_observations_"+file_date+".xlsx"
+    if os.path.exists(filepath3):
+        os.remove(filepath3)
+
     # save workbook 
     wb3.save(filepath3)
     wb3 = load_workbook(filepath3)
